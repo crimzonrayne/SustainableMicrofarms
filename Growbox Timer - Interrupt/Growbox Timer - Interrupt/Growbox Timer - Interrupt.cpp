@@ -38,8 +38,11 @@ void sprayCycle()
 {
 	(PORTB |= (1 << PINB6));
 	delay_ms(sprayTime);
-	(PORTB &= ~(1 << PINB6));
-	delay_ms(60000 - sprayTime);	
+	if (sprayTime != 60000)
+	{
+		(PORTB &= ~(1 << PINB6));
+		delay_ms(60000 - sprayTime);
+	}	
 }
 
 int main(void)
@@ -60,23 +63,23 @@ int main(void)
 				break;
 			case 1:
 				PORTB = 0b00000010;
-				sprayTime = 3000;
+				sprayTime = 5000;
 				break;
 			case 2:
 				PORTB = 0b00000100;
-				sprayTime = 6000;
+				sprayTime = 10000;
 				break;
 			case 3:
 				PORTB = 0b00001000;
-				sprayTime = 9000;
+				sprayTime = 15000;
 				break;
 			case 4:
 				PORTB = 0b00010000;
-				sprayTime = 12000;
+				sprayTime = 30000;
 				break;
 			case 5:
 				PORTB = 0b00100000;
-				sprayTime = 15000;
+				sprayTime = 60000;
 				break;
 			default:
 				spraySetting = 0;	
